@@ -11,6 +11,9 @@ def foo():
     # print(pyautogui.position())
     pyautogui.moveTo(860, 460)
     pyautogui.leftClick()
+    pyautogui.moveTo(2500, 1400)
+    pyautogui.leftClick()
+    pyautogui.leftClick()
 
     global i
     print(i)
