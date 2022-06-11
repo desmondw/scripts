@@ -1,12 +1,15 @@
 import keyboard
 
 class TorchlightScripter():
-    def __init__(self, hotkey='\\'):
+    def __init__(self, hotkey='\\', init=None):
         self.scriptRunning = True
         self.running = False
 
         keyboard.add_hotkey(hotkey, self.toggleScript)
         keyboard.add_hotkey('esc', self.killScript)
+
+        if init:
+            init()
 
     def killScript(self):
         self.scriptRunning = False
@@ -22,8 +25,8 @@ class TorchlightScripter():
     def update(self):
         raise Exception('not implemented')
 
-def run(fn):
-    script = TorchlightScripter('\\')
+def run(fn, init=None):
+    script = TorchlightScripter('\\', init)
 
     def update():
         fn()
