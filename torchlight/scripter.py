@@ -4,17 +4,17 @@ class TorchlightScripter():
     def __init__(self, hotkey='\\', init=None):
         self.scriptRunning = True
         self.running = False
+        self.init = init
 
         keyboard.add_hotkey(hotkey, self.toggleScript)
-        keyboard.add_hotkey('esc', self.killScript)
-
-        if init:
-            init()
+        keyboard.add_hotkey('`', self.killScript)
 
     def killScript(self):
         self.scriptRunning = False
 
     def toggleScript(self):
+        if self.init and not self.running:
+            self.init()
         self.running = not self.running
 
     def run(self):
