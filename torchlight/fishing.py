@@ -15,26 +15,42 @@ def screencap():
     print(i)
     i= i + 1
 
+def getPos():
+    pos = pyautogui.position()
+    print(pos)
+    print(pyautogui.pixel(pos.x, pos.y))
+    pyautogui.sleep(.500)
+
 def clickPool():
+    print(f'clicking fishing pool')
     pyautogui.moveTo(fishingPool.x, fishingPool.y)
     pyautogui.leftClick()
 
 def foo():
-    # if fish ready to be caught
-    if pyautogui.locateOnScreen('fishing.png'): # TODO
+    # check if fish ready to be caught
+    # if pyautogui.locateOnScreen('fishing.png'):
+    pixel = pyautogui.pixel(1204, 959)
+    if pixel[2] >= 200:
+        print(f'ready to catch identified')
+        pyautogui.sleep(.150)
+
         # click hook icon (reel-in)
-        pyautogui.moveTo(0, 0) # TODO
+        print(f'reeling in')
+        pyautogui.moveTo(1275, 930)
         pyautogui.leftClick()
 
         # wait for caught animation
-        pyautogui.sleep(6) # TODO
+        print(f'waiting for animation')
+        pyautogui.sleep(3.0) # TODO
 
         # click confirmation dialogue
-        pyautogui.moveTo(0, 0) # TODO
+        print(f'clicking confirm dialogue')
+        pyautogui.moveTo(1275, 875)
         pyautogui.leftClick()
 
         # wait for dialogue to leave
-        pyautogui.sleep(1) # TODO
+        print(f'waiting for confirm dialogue to leave')
+        pyautogui.sleep(0.2) # TODO
 
         # mark fish caught
         global i
@@ -48,7 +64,15 @@ def foo():
 def init():
     global fishingPool
     fishingPool = pyautogui.position()
+    print(f'fishingPool position; x:{fishingPool.x} y:{fishingPool.y}')
     clickPool()
 
+def printPixelColor():
+    pixel = pyautogui.pixel(1204, 959)
+    print(pixel)
+
 # scripter.run(screencap)
+# scripter.run(getPos)
 scripter.run(foo, init)
+# scripter.run(printPixelColor)
+# scripter.run(getPos, init)

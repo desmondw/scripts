@@ -1,6 +1,6 @@
 import keyboard
 
-class TorchlightScripter():
+class Scripter():
     def __init__(self, hotkey='\\', init=None):
         self.scriptRunning = True
         self.running = False
@@ -26,7 +26,7 @@ class TorchlightScripter():
         raise Exception('not implemented')
 
 def run(fn, init=None):
-    script = TorchlightScripter('\\', init)
+    script = Scripter('\\', init)
 
     def update():
         fn()
